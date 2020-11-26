@@ -2,9 +2,9 @@
   <div class="layout-container">
     <el-container>
       <!-- 左侧 -->
-      <el-aside width="200px">
+      <el-aside :width="isCollapse ? '64px' : '200px'">
         <!-- logo -->
-        <div class="logo"></div>
+        <div class="logo" :class="{ minLogo: isCollapse }"></div>
         <!-- 菜单区域 -->
         <el-menu
           default-active="1"
@@ -12,6 +12,8 @@
           background-color="#002033"
           text-color="#fff"
           active-text-color="#ffd04b"
+          :collapse="isCollapse"
+          :collapse-transition="false"
         >
           <el-menu-item index="1">
             <i class="el-icon-s-home"></i>
@@ -47,13 +49,16 @@
       <el-container>
         <el-header>
           <div class="left">
-            <i class="el-icon-s-fold"></i>
+            <i
+              :class="isCollapse ? 'el-icon-s-unfold' : 'el-icon-s-fold'"
+              @click="collapse"
+            ></i>
             <span>传智播客科技教育公司</span>
           </div>
 
           <el-dropdown>
             <div class="avatar-wrap">
-              <img class="avatar" src="~@/assets/avatar.jpg" alt="">
+              <img class="avatar" src="~@/assets/avatar.jpg" alt="" />
               <span>更多菜单</span>
               <i class="el-icon-arrow-down el-icon--right"></i>
             </div>
@@ -71,11 +76,21 @@
 
 <script>
 export default {
-  name: 'Layout'
+  name: 'Layout',
+  data () {
+    return {
+      isCollapse: false
+    }
+  },
+  methods: {
+    collapse () {
+      this.isCollapse = !this.isCollapse
+    }
+  }
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .layout-container {
   position: fixed;
   width: 100%;
@@ -89,9 +104,15 @@ export default {
     .logo {
       width: 100%;
       height: 60px;
-      background: #002244 url('~@/assets/logo_admin.png') no-repeat center;
+      background: #002244 url("~@/assets/logo_admin.png") no-repeat center;
       background-size: 140px auto;
     }
+
+    .minLogo {
+      background-image: url(../../assets/logo_admin_01.png);
+      background-size: 36px auto;
+    }
+
     .el-menu {
       border-right: none;
     }
@@ -102,6 +123,9 @@ export default {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #ccc;
+    .left i {
+      cursor: pointer;
+    }
     .avatar-wrap {
       display: flex;
       align-items: center;

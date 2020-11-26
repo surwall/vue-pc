@@ -9,3 +9,8 @@ export const setUser = (user) => {
 export const getUser = () => {
   return JSON.parse(localStorage.getItem(key)) || {}
 }
+
+// 删除用户信息
+export const delUser = () => {
+  localStorage.removeItem(key)
+}

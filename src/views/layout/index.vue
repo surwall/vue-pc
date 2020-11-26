@@ -64,7 +64,7 @@
             </div>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>设置</el-dropdown-item>
-              <el-dropdown-item>退出</el-dropdown-item>
+              <el-dropdown-item @click.native="logout">退出</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </el-header>
@@ -76,6 +76,7 @@
 
 <script>
 import { reqGetUserProfile } from '../../api/user'
+import { delUser } from '@/utils/storage.js'
 export default {
   name: 'Layout',
   data () {
@@ -93,6 +94,10 @@ export default {
   methods: {
     collapse () {
       this.isCollapse = !this.isCollapse
+    },
+    logout () {
+      delUser()
+      this.$router.push('/login')
     }
   }
 }

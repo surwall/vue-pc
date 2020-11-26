@@ -58,8 +58,8 @@
 
           <el-dropdown>
             <div class="avatar-wrap">
-              <img class="avatar" src="~@/assets/avatar.jpg" alt="" />
-              <span>更多菜单</span>
+              <img class="avatar" :src="user.photo" alt="" />
+              <span>{{user.name}}</span>
               <i class="el-icon-arrow-down el-icon--right"></i>
             </div>
             <el-dropdown-menu slot="dropdown">
@@ -75,13 +75,21 @@
 </template>
 
 <script>
+import { reqGetUserProfile } from '../../api/user'
 export default {
   name: 'Layout',
   data () {
     return {
-      isCollapse: false
+      isCollapse: false,
+      user: {}
     }
   },
+  created () {
+    reqGetUserProfile().then(res => {
+      this.user = res.data.data
+    })
+  },
+
   methods: {
     collapse () {
       this.isCollapse = !this.isCollapse

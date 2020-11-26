@@ -28,6 +28,7 @@
 
 <script>
 import { reqUserLogin } from '../../api/user.js'
+import { setUser } from '../../utils/storage.js'
 
 export default {
   name: 'Login',
@@ -74,6 +75,9 @@ export default {
               showClose: true,
               duration: 1000
             })
+            // 存储token
+            // localStorage.setItem('userInfo', JSON.stringify(res.data.data))
+            setUser(res.data.data)
             // 登录跳转
             this.$router.push('/')
           }).catch(e => {

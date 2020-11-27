@@ -6,6 +6,7 @@ import { getUser } from '../utils/storage'
 import Home from '@/views/home'
 import Articles from '@/views/articles'
 import Pictures from '@/views/pictures'
+import Page404 from '@/views/page404'
 
 Vue.use(VueRouter)
 
@@ -21,7 +22,10 @@ const routes = [
       { path: 'articles', component: Articles },
       { path: 'pictures', component: Pictures }
     ]
-
+  },
+  // 404页面
+  {
+    path: '*', component: Page404
   }
 ]
 

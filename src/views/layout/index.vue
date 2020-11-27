@@ -59,7 +59,7 @@
           <el-dropdown>
             <div class="avatar-wrap">
               <img class="avatar" :src="user.photo" alt="" />
-              <span>{{user.name}}</span>
+              <span>{{ user.name }}</span>
               <i class="el-icon-arrow-down el-icon--right"></i>
             </div>
             <el-dropdown-menu slot="dropdown">
@@ -96,8 +96,16 @@ export default {
       this.isCollapse = !this.isCollapse
     },
     logout () {
-      delUser()
-      this.$router.push('/login')
+      this.$confirm('你确认要退出本系统么?', '温馨提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+      // 删除用户本地信息
+        delUser()
+        this.$router.push('/login')
+      }).catch(() => {
+      })
     }
   }
 }

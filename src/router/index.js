@@ -7,6 +7,8 @@ import Home from '@/views/home'
 import Articles from '@/views/articles'
 import Pictures from '@/views/pictures'
 import Page404 from '@/views/page404'
+import AddArticle from '@/views/articles/add.vue'
+import EditArticle from '@/views/articles/edit.vue'
 
 Vue.use(VueRouter)
 
@@ -23,9 +25,12 @@ const routes = [
       { path: 'pictures', component: Pictures }
     ]
   },
+  { path: '/add-article', component: AddArticle },
+  { path: '/edit-article/:id', component: EditArticle },
   // 404页面
   {
-    path: '*', component: Page404
+    path: '*',
+    component: Page404
   }
 ]
 

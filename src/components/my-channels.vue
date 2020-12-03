@@ -1,12 +1,29 @@
 <template>
-  <div class="my-channels">
-    我的频道
-  </div>
+  <el-select @change="selectChange" :value="value" placeholder="请选择" clearable>
+      <!-- select的value就是被选中的option的value值 -->
+      <!-- label给用户的提示, value才是收集给后台的id -->
+    <el-option
+      v-for="item in channels"
+      :key="item.id"
+      :label="item.name"
+      :value="item.id">
+    </el-option>
+  </el-select>
 </template>
 
 <script>
 export default {
-  name: 'MyChannels'
+  name: 'MyChannels',
+  props: ['value', 'channels'],
+  data () {
+    return {
+    }
+  },
+  methods: {
+    selectChange (value) {
+      this.$emit('input', value)
+    }
+  }
 }
 </script>
 

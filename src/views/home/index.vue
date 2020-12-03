@@ -11,6 +11,11 @@ export default {
   name: 'Home',
   components: {
     MyChannels
+  },
+  data () {
+    return {
+      channel_id: ''
+    }
   }
 }
 </script>

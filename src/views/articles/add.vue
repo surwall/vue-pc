@@ -28,16 +28,8 @@
             <el-radio :label="9">自动</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="频道" prop="channel_id">
-          <el-select v-model="form.channel_id" placeholder="请选择">
-            <el-option
-              v-for="item in channels"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
-            >
-            </el-option>
-          </el-select>
+        <el-form-item label="频道">
+          <my-channels v-model="form.channel_id" :channels="channels"></my-channels>
         </el-form-item>
         <el-form-item>
           <el-button @click="clickAddArticle(false)" type="primary"
@@ -58,12 +50,14 @@ import 'quill/dist/quill.bubble.css'
 import { quillEditor } from 'vue-quill-editor'
 
 import MyBreadcrumb from '@/components/my-breadcrumb.vue'
+import MyChannels from '@/components/my-channels.vue'
 import { reqAddArticles, reqGetChannels } from '../../api/articles'
 export default {
   name: 'AddArticle',
   components: {
     MyBreadcrumb,
-    quillEditor
+    quillEditor,
+    MyChannels
   },
   created () {
     this.loadChannels()

@@ -18,9 +18,7 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="频道">
-          <el-select v-model="form.channel_id" placeholder="请选择频道" clearable>
-            <el-option v-for="item in channels" :key="item.id" :label="item.name" :value="item.id"></el-option>
-          </el-select>
+          <my-channels v-model="form.channel_id" :channels="channels"></my-channels>
         </el-form-item>
         <el-form-item label="活动时间">
           <el-date-picker
@@ -104,8 +102,9 @@
 <script>
 import { reqDelArticles, reqGetArticles, reqGetChannels } from '../../api/articles'
 import myBreadcrumb from '../../components/my-breadcrumb.vue'
+import myChannels from '@/components/my-channels.vue'
 export default {
-  components: { myBreadcrumb },
+  components: { myBreadcrumb, myChannels },
   created () {
     this.loadArticles()
     this.loadChannels()
@@ -149,7 +148,6 @@ export default {
       })
     },
     del (id) {
-      // TODO
       const articleId = id.toString()
       this.$confirm('你确认要删除么?', '温馨提示', {
         type: 'warning'

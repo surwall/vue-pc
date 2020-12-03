@@ -9,9 +9,9 @@ import { getUser } from '@/utils/storage.js'
 // })
 
 const http = axios.create({
-  baseURL: 'http://api-toutiao-web.itheima.net/',
+  baseURL: 'http://api-toutiao-web.itheima.net',
   // baseURL: 'http://ttapi.research.itcast.cn/',
-  timeout: 3000,
+  // timeout: 3000,
   transformResponse: [
     function (data) {
       try {

@@ -21,3 +21,18 @@ export const reqDelArticles = (articleId) => {
     url: `/mp/v1_0/articles/${articleId}`
   })
 }
+/**
+ * 添加文章
+ * @param {Boolean} draft 是否为草稿
+ * @param {Object} articleObj post body
+ */
+export const reqAddArticles = (draft, articleObj) => {
+  return http({
+    method: 'POST',
+    url: 'mp/v1_0/articles',
+    params: {
+      draft
+    },
+    data: articleObj
+  })
+}

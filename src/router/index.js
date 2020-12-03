@@ -22,11 +22,12 @@ const routes = [
     children: [
       { path: '', component: Home },
       { path: 'articles', component: Articles },
-      { path: 'pictures', component: Pictures }
+      { path: 'pictures', component: Pictures },
+      { path: '/add-article', component: AddArticle },
+      { path: '/edit-article/:id', component: EditArticle }
     ]
   },
-  { path: '/add-article', component: AddArticle },
-  { path: '/edit-article/:id', component: EditArticle },
+
   // 404页面
   {
     path: '*',

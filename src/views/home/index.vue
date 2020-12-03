@@ -1,10 +1,17 @@
 <template>
-  <div>主页</div>
+  <div class="home">
+    <h1>主页</h1>
+    <my-channels></my-channels>
+  </div>
 </template>
 
 <script>
+import MyChannels from '@/components/my-channels.vue'
 export default {
-  name: 'Home'
+  name: 'Home',
+  components: {
+    MyChannels
+  }
 }
 </script>
 

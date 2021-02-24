@@ -18,7 +18,7 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="频道">
-          <my-channels v-model="form.channel_id" :channels="channels"></my-channels>
+          <my-channels v-model="form.channel_id"></my-channels>
         </el-form-item>
         <el-form-item label="活动时间">
           <el-date-picker
@@ -100,14 +100,13 @@
 </template>
 
 <script>
-import { reqDelArticles, reqGetArticles, reqGetChannels } from '../../api/articles'
+import { reqDelArticles, reqGetArticles } from '../../api/articles'
 import myBreadcrumb from '../../components/my-breadcrumb.vue'
 import myChannels from '@/components/my-channels.vue'
 export default {
   components: { myBreadcrumb, myChannels },
   created () {
     this.loadArticles()
-    this.loadChannels()
   },
   name: 'Articles',
   data () {
@@ -188,12 +187,6 @@ export default {
         channel_id: this.form.channel_id || null // 频道的 id
       }
       this.loadArticles()
-    },
-
-    loadChannels () {
-      reqGetChannels().then(res => {
-        this.channels = res.data.data.channels
-      })
     }
   }
 }

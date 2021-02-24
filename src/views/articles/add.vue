@@ -59,9 +59,6 @@ export default {
     quillEditor,
     MyChannels
   },
-  created () {
-    this.loadChannels()
-  },
   data () {
     return {
       form: {
@@ -104,11 +101,6 @@ export default {
   },
 
   methods: {
-    async loadChannels () {
-      const res = await reqGetChannels()
-      this.channels = res.data.data.channels
-    },
-
     clickAddArticle (draft) {
       this.$refs.myform.validate(async (valid) => {
         if (!valid) return

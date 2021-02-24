@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1>主页</h1>
-    <my-channels></my-channels>
+    <my-channels v-model="channel_id"></my-channels>
   </div>
 </template>
 
@@ -16,6 +16,8 @@ export default {
     return {
       channel_id: ''
     }
+  },
+  methods: {
   }
 }
 </script>

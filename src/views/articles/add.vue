@@ -21,12 +21,17 @@
         </el-form-item>
         <el-form-item label="封面">
           <!-- 写死的, 没有绑定值, 后面会实现 -->
-          <el-radio-group>
-            <el-radio :label="3">单图</el-radio>
-            <el-radio :label="6">三图</el-radio>
-            <el-radio :label="9">无图</el-radio>
-            <el-radio :label="9">自动</el-radio>
+          <el-radio-group v-model="form.cover.type" @change="changeCoverType">
+            <el-radio :label="1">单图</el-radio>
+            <el-radio :label="3">三图</el-radio>
+            <el-radio :label="0">无图</el-radio>
+            <el-radio :label="-1">自动</el-radio>
           </el-radio-group>
+
+          <!-- 封面组件的盒子 -->
+          <div class="cover-box" v-if="form.cover.type > 0" :key="form.cover.type">
+            <my-cover v-for="(item, index) in form.cover.type" :key="index" v-model="form.cover.images[index]"></my-cover>
+          </div>
         </el-form-item>
         <el-form-item label="频道">
           <my-channels v-model="form.channel_id" :channels="channels"></my-channels>
@@ -51,13 +56,15 @@ import { quillEditor } from 'vue-quill-editor'
 
 import MyBreadcrumb from '@/components/my-breadcrumb.vue'
 import MyChannels from '@/components/my-channels.vue'
-import { reqAddArticles, reqGetChannels } from '../../api/articles'
+import { reqAddArticles } from '../../api/articles'
+import MyCover from '@/components/my-cover'
 export default {
   name: 'AddArticle',
   components: {
     MyBreadcrumb,
     quillEditor,
-    MyChannels
+    MyChannels,
+    MyCover
   },
   data () {
     return {
@@ -116,6 +123,10 @@ export default {
 
     quillFn () {
       this.$refs.myform.validateField('content')
+    },
+
+    changeCoverType () {
+      this.form.cover.images = []
     }
   }
 }
@@ -134,5 +145,12 @@ export default {
 
 .el-form-item /deep/ .el-form-item__label::before {
   display: none;
+}
+
+.cover-box {
+  display: flex;
+  .my-cover {
+    margin-right: 20px;
+  }
 }
 </style>

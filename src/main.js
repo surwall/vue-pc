@@ -12,6 +12,8 @@ import './styles/index.less'
 import http from './utils/request'
 Vue.use(ElementUI)
 Vue.prototype.$http = http
+// 事件总线
+Vue.prototype.$eventBus = new Vue()
 
 Vue.config.productionTip = false
 

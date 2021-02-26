@@ -140,8 +140,6 @@ export default {
     },
 
     imageClick (image) {
-      console.log('current image is selected')
-      console.log(image.url)
       this.selectedImageUrl = image.url
     },
 

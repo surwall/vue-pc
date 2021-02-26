@@ -36,3 +36,27 @@ export const reqAddArticles = (draft, articleObj) => {
     data: articleObj
   })
 }
+
+/**
+ * 根据 id 获取文章详情
+ */
+export const reqGetArticleById = (id) => {
+  return http({
+    method: 'get',
+    url: `/mp/v1_0/articles/${id}`
+  })
+}
+
+/**
+ * 根据 id 保存修改文章详情
+ */
+export const reqEditArticle = (id, draft, data) => {
+  return http({
+    method: 'put',
+    url: `/mp/v1_0/articles/${id}`,
+    data,
+    params: {
+      draft
+    }
+  })
+}

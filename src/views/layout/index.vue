@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import { reqGetUserProfile } from '../../api/user'
+import { reqGetUserInfo, reqGetUserProfile } from '../../api/user'
 import { delUser } from '@/utils/storage.js'
 export default {
   name: 'Layout',
@@ -89,7 +89,17 @@ export default {
     }
   },
   created () {
-    reqGetUserProfile().then(res => {
+  // 添加监听
+    this.$eventBus.$on('update_user_name', newName => {
+    // 更新到数据项中
+      this.user.name = newName
+    })
+    this.$eventBus.$on('update_user_photo', newPhoto => {
+    // 更新到数据项中
+      this.user.photo = newPhoto
+    })
+
+    reqGetUserInfo().then(res => {
       this.user = res.data.data
     })
   },

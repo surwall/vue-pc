@@ -24,3 +24,37 @@ export const reqGetUserProfile = () => {
     url: '/mp/v1_0/user/profile'
   })
 }
+
+/**
+ * 请求用户信息
+ */
+export const reqGetUserInfo = () => {
+  return http({
+    method: 'get',
+    url: '/mp/v1_0/user/profile'
+  })
+}
+
+/**
+ * 修改用户信息
+ * @param {*} data {name, intro, email}
+ */
+export const reqModUserProfile = data => {
+  return http({
+    method: 'patch',
+    url: '/mp/v1_0/user/profile',
+    data
+  })
+}
+
+/**
+ * 修改头像
+ * @param {*} formData formData格式对象
+ */
+export const reqModUserImage = formData => {
+  return http({
+    method: 'patch',
+    url: '/mp/v1_0/user/photo',
+    data: formData
+  })
+}

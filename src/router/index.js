@@ -1,14 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Login from '@/views/login'
-import Layout from '@/views/layout'
 import { getUser } from '../utils/storage'
-import Home from '@/views/home'
-import Articles from '@/views/articles'
-import Pictures from '@/views/pictures'
-import Page404 from '@/views/page404'
-import AddArticle from '@/views/articles/add.vue'
-import EditArticle from '@/views/articles/edit.vue'
+const Pictures = () => import('@/views/pictures')
+const Page404 = () => import('@/views/page404')
+const AddArticle = () => import('@/views/articles/add.vue')
+const EditArticle = () => import('@/views/articles/edit.vue')
+const Comment = () => import('@/views/comment/index.vue')
+const Fans = () => import('@/views/fans/index.vue')
+const Settings = () => import('@/views/settings/index.vue')
+const Articles = () => import('@/views/articles')
+const Home = () => import('@/views/home')
+const Layout = () => import('@/views/layout')
+const Login = () => import('@/views/login')
 
 Vue.use(VueRouter)
 
@@ -22,6 +25,9 @@ const routes = [
     children: [
       { path: '', component: Home },
       { path: 'articles', component: Articles },
+      { path: 'comment', component: Comment },
+      { path: 'fans', component: Fans },
+      { path: 'settings', component: Settings },
       { path: 'pictures', component: Pictures },
       { path: '/add-article', component: AddArticle },
       { path: '/edit-article/:id', component: EditArticle }

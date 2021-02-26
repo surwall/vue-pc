@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>主页</h1>
+    <h1>这是许超寅的主页</h1>
     <my-channels v-model="channel_id"></my-channels>
     <my-button @click="login">登录</my-button>
     <my-button @click.native="login">注册</my-button>
